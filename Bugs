@@ -1,0 +1,6 @@
+The current issues that I am facing is currently the following;
+- created most of the resources in eu-west-2 which gave me problems later on when configuring DNS and cloudfront
+
+needed to clear cashe - this error caused to me delete everything and start again .
+
+I made the mistake of deleting everything when I changed the html file and it did not update my best site due to cashing issues 

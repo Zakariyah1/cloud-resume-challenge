@@ -1,0 +1,8 @@
+AWS commands 
+
+aws-vault exec Zak -- aws s3 ls 
+aws-vault exec Zak --no-session -- sam deploy 
+sam build     
+
+aws cloudformation update-stack --stack-name cloud-Resume-Challange --template-body /Users/zakariyah/cloud-Resume-Challange/template.yaml
+aws cloudformation create-stack --stack-name Cloud-Resume-Challange --template-body /Users/zakariyah/cloud-Resume-Challange/template.yaml --region us-east-1
