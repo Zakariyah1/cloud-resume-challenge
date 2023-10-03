@@ -3,7 +3,7 @@ import json
 # import requests
 
 
-def put_function(event, context):
+def get_function(event, context):
     """Sample pure Lambda function
 
     Parameters
