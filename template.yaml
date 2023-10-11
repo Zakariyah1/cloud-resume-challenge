@@ -5,7 +5,7 @@ Description: >
 
   Sample SAM Template for cloud-Resume
 
-# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+
 Globals:
   Function:
     Timeout: 3
@@ -32,7 +32,7 @@ Resources:
   MyCertificate:
     Type: AWS::CertificateManager::Certificate
     Properties:
-      DomainName: zakariyahs-website.com # TODO: Don't hardcode me
+      DomainName: zakariyahs-website.com 
       ValidationMethod: DNS
   
   
@@ -44,7 +44,7 @@ Resources:
           AcmCertificateArn: !Ref MyCertificate
           SslSupportMethod: sni-only
         Aliases:
-          - zakariyahs-website.com # TODO: Don't hardcode me
+          - zakariyahs-website.com 
         DefaultCacheBehavior:
           ViewerProtocolPolicy: allow-all
           TargetOriginId: cloud-resume-mywebsite1-12cdzjrxg6dj2.s3-website-us-east-1.amazonaws.com
@@ -64,9 +64,9 @@ Resources:
   MyRoute53Record:
     Type: "AWS::Route53::RecordSetGroup"
     Properties:
-      HostedZoneId: Z09896863H6K1GP78S66K # TODO: Don't hardcode me
+      HostedZoneId: Z09896863H6K1GP78S66K 
       RecordSets:
-        - Name: website.zakariyahs-website.com # TODO: Don't hardcode me
+        - Name: website.zakariyahs-website.com
           Type: A
           AliasTarget:
             HostedZoneId: Z2FDTNDATAQYW2
@@ -103,35 +103,24 @@ Resources:
 #      Bucket: !Ref MyWebsite1
 
 
-  GetFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+  lambdaFunction:
+    Type: AWS::Serverless::Function 
     Properties:
-      CodeUri: get-function/
-      Handler: app.get_function
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName: cloud-resume-challenge
+      CodeUri: lambda_handler/
+      Handler: app.lambda_handler
       Runtime: python3.9
       Architectures:
       - x86_64
       Events:
         HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Type: Api
           Properties:
             Path: /get
             Method: get
-
-  PutFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
-    Properties:
-      CodeUri: put-function/
-      Handler: app.put_function
-      Runtime: python3.9
-      Architectures:
-      - x86_64
-      Events:
-        HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-          Properties:
-            Path: /put
-            Method: get        
+     
 
   ApplicationResourceGroup:
     Type: AWS::ResourceGroups::Group
@@ -153,9 +142,9 @@ Outputs:
   HelloWorldApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/get/"
-  GetFunction:
+  lambdaFunction:
     Description: Hello World Lambda Function ARN
-    Value: !GetAtt GetFunction.Arn
-  GetFunctionIamRole:
+    Value: !GetAtt lambdaFunction.Arn
+  lambdaFunctionIamRole:
     Description: Implicit IAM Role created for Hello World function
-    Value: !GetAtt GetFunctionRole.Arn
+    Value: !GetAtt lambdaFunction.Arn

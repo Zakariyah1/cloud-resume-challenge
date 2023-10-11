@@ -1,25 +1,24 @@
 <html>
     <head>
-        <script>
-            fetch('https://1xb0h2prfh.execute-api.us-east-1.amazonaws.com/Prod/get')
-                .then(response => response.json())
-                .then((data) => {
-                    document.getElementById('replaceme').innerText = data.count
-                })
-        </script>
         <style>
             p {
                 color: teal;
             }
         </style>
+        <script>
+            fetch('https://mcl4t7qxua4zbvjlxq6vhkqf3u0vpqsv.lambda-url.us-east-1.on.aws')
+                .then(response => response.json())
+                .then((data) => {
+                    document.getElementById('replaceme').innerText = data
+                })
+        </script>
     </head>
     <body>
         <p> Welcome to my website! </p>
-    </body>
-    <body>
         <p>
             Visitors
-        <span id ="replaceme" >
+            <span id="replaceme"></span>
+            
         </p>
     </body>
 </html>
