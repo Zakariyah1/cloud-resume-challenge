@@ -1,4 +1,4 @@
-name: Upload website to S3
+name: Main
 
 on:
   push:
@@ -21,4 +21,3 @@ jobs:
            run: |
             pip install pytest pytest-cov
             pytest lambda_handler/app.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
-            
