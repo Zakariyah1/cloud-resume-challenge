@@ -15,4 +15,4 @@ jobs:
         with:
           python-version: '3.9'
       
-      - run: python lambda_handler/app.py
+      - run: python cd lambda_handler/app.py
