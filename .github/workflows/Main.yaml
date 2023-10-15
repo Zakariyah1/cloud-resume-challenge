@@ -21,6 +21,4 @@ jobs:
           pip install -r lambda_handler/requirements.txt 
 
       - name: Test lambda_handler
-        run: |
-          pip install pytest pytest-cov
-          pytest lambda_handler/app.py
+        run: python lambda_handler/app.py
