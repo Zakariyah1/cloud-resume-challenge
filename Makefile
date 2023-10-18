@@ -8,4 +8,3 @@ deploy-infra:
 
 deploy-site:
 	aws-vault exec Zak --no-session -- aws s3 sync ./resume-site s3://cloud-resume-mywebsite1-12cdzjrxg6dj2
-	
