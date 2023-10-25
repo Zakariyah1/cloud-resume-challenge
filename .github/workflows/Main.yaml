@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  deploy:
+  deploy-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -26,7 +26,7 @@ jobs:
         run: python lambda_handler/app.py
   
   deploy-infra:
-    needs: deploy
+    needs: deploy-test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
